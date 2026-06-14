@@ -1,0 +1,23 @@
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-produtos
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: marketplace
+
+    ports:
+      - "3306:3306"
+
+  ms-produtos:
+    build: .
+
+    container_name: ms-produtos
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - mysql
